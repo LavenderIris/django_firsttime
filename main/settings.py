@@ -31,7 +31,7 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'apps.random_word_generator',
+    'apps.amadon',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
