@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <title>AJAX Post</title>
+</head>
+
+<style>
+    .border {
+        height: 119px;
+        width: 132px;
+        padding: 10px;
+        border: 1px solid;
+        display: inline-block;
+        text-align: center;
+        vertical-align: top;
+    }
+    
+    .red {
+        color: red;
+    }
+    
+    .green {
+        background-color: green;
+        color: white;
+    }
+   
+    
+    p {
+        margin: 0px;
+        padding: 0px;
+    }
+</style>
+
+<body>
+    <h1>My Notes</h1>
+    
+    <form action='/create' method='post' class='ajax_form' id='create_user_ajax_form'>
+        {% csrf_token %}
+        note<input type='text' name='note'/>
+        <input type='submit' value='Submit' />
+    </form>
+    <div id='placeholder3' style='margin-top:35px; border:1px solid silver; width:750px; padding:10px;'>
+        Placeholder for the Ajax Form part II
+    </div>
+    <script>
+        $('#create_user_ajax_form').submit(function(e){
+        e.preventDefault()
+        console.log('Sending Ajax request to', $(this).attr('action'))
+        console.log('Submitting the following data', $(this).serialize())
+        $.ajax({
+            url: $(this).attr('action'), /* Where should this go? */
+            method: 'post', /* Which HTTP verb? */
+            data: $(this).serialize(), /* Any data to send along? */
+            success: function(serverResponse) { /* What code should we run when the server responds? */
+            $('#placeholder3').html(serverResponse)
+            }
+        })
+        });
+    </script>
+
+</body>
+
+</html>
